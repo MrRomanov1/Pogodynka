@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Separator layoutX="369.0" orientation="VERTICAL" prefHeight="590.0" prefWidth="23.0" />
+        <TextField fx:id="firstCityLabel" layoutX="71.0" layoutY="54.0" prefHeight="25.0" prefWidth="228.0" />
+        <TextField fx:id="secondCityLabel" layoutX="455.0" layoutY="54.0" prefHeight="25.0" prefWidth="228.0" />
+        <Label fx:id="firstCityTemperatureLabel" layoutX="157.0" layoutY="140.0" prefHeight="51.0" prefWidth="78.0" text="33">
+            <font>
+                <Font size="50.0" />
+            </font>
+        </Label>
+        <Label fx:id="secondCityTemperatureLabel" layoutX="530.0" layoutY="140.0" prefHeight="51.0" prefWidth="78.0" text="33">
+            <font>
+                <Font size="50.0" />
+            </font>
+        </Label>
+        <Label fx:id="firstCityWeatherLabel" layoutX="147.0" layoutY="228.0" prefHeight="17.0" prefWidth="99.0" text="POGODA" />
+        <Label fx:id="secondCityWeatherLabel" layoutX="520.0" layoutY="228.0" prefHeight="17.0" prefWidth="99.0" text="POGODA" />
+    </children>
+</AnchorPane>
