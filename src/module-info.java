@@ -7,5 +7,5 @@ module Pogodynka {
     opens pl.piotr_romanczak;
     opens pl.piotr_romanczak.view;
     opens pl.piotr_romanczak.controller;
-    //opens pl.piotr_romanczak.model;
+    opens pl.piotr_romanczak.model;
 }
