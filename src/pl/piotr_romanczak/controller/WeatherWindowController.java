@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 import pl.piotr_romanczak.LocationLoader;
 import pl.piotr_romanczak.Pogodynka;
 import pl.piotr_romanczak.model.LocationData;
@@ -38,7 +40,7 @@ public class WeatherWindowController extends BaseController implements Initializ
     private List<LocationData> citiesList;
     private HashMap<String, String> cityNames;
 
-    public void getCityListWithCountryCodes () throws IOException {
+    public void getCityListWithCountryCodes() throws IOException {
         citiesList = new LocationLoader().getCitiesList();
         cityNames = new HashMap<>();
 
@@ -54,14 +56,6 @@ public class WeatherWindowController extends BaseController implements Initializ
         super(pogodynka, viewFactory, fxmlName);
     }
 
-    public boolean isEmpty() {
-        if (firstCityLabel.getText().isEmpty() || secondCityLabel.getText().isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -70,11 +64,19 @@ public class WeatherWindowController extends BaseController implements Initializ
             e.printStackTrace();
         }
 
-        firstCityLabel.textProperty().addListener( e -> {
-            System.out.println(firstCityLabel.getText());
+        firstCityLabel.textProperty().addListener(e -> {
+            if (!firstCityLabel.getText().isEmpty()) {
+                autocompleteTextField(firstCityLabel);
+            }
         });
-        secondCityLabel.textProperty().addListener( e -> {
-            System.out.println(secondCityLabel.getText());
+        secondCityLabel.textProperty().addListener(e -> {
+            if (!secondCityLabel.getText().isEmpty()) {
+                autocompleteTextField(secondCityLabel);
+            }
         });
+    }
+
+    public void autocompleteTextField(TextField textField) {
+        TextFields.bindAutoCompletion(textField, cityNames.values());
     }
 }
