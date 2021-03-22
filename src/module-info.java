@@ -3,6 +3,8 @@ module Pogodynka {
     requires javafx.controls;
     requires javafx.graphics;
     requires javafx.web;
+    requires com.google.gson;
+    requires org.controlsfx.controls;
 
     opens pl.piotr_romanczak;
     opens pl.piotr_romanczak.view;
