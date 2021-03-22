@@ -21,7 +21,7 @@ public class Launcher extends Application {
     public void start(Stage stage) throws IOException {
         ViewFactory viewFactory = new ViewFactory(pogodynka);
         System.out.println("Called main window");
-        //viewFactory.showMainWindow();
+        viewFactory.showMainWindow();
         weatherData.getWeatherData();
     }
 }
