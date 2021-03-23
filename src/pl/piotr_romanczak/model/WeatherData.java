@@ -10,10 +10,10 @@ import java.net.URLConnection;
 public class WeatherData {
     private final Config config = new Config();
 
-    public String setWeatherQuery() {
+    public String setWeatherQuery(int cityId) {
 
-        String weatherQuery = "http://api.openweathermap.org/data/2.5/weather?q="
-                + "London"
+        String weatherQuery = "http://api.openweathermap.org/data/2.5/weather?id="
+                + cityId
                 + "&appid="
                 + config.getWeatherApiKey()
                 + "&lang="
@@ -24,9 +24,9 @@ public class WeatherData {
         return weatherQuery;
     }
 
-    public void getWeatherData () throws IOException {
+    public void getWeatherData (int cityId) throws IOException {
         StringBuilder result = new StringBuilder();
-        URL weatherQuery = new URL(setWeatherQuery());
+        URL weatherQuery = new URL(setWeatherQuery(cityId));
         URLConnection urlConnection = weatherQuery.openConnection();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
         String str;
@@ -36,4 +36,5 @@ public class WeatherData {
         bufferedReader.close();
         System.out.println(result);
     }
+
 }

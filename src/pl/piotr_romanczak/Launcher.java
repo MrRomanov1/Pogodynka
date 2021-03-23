@@ -22,6 +22,5 @@ public class Launcher extends Application {
         ViewFactory viewFactory = new ViewFactory(pogodynka);
         System.out.println("Called main window");
         viewFactory.showMainWindow();
-        weatherData.getWeatherData();
     }
 }
