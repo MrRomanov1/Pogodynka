@@ -1,40 +1,31 @@
 package pl.piotr_romanczak.model;
-import pl.piotr_romanczak.Config;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
+import pl.piotr_romanczak.model.weather_params.Main;
+import pl.piotr_romanczak.model.weather_params.Weather;
+import pl.piotr_romanczak.model.weather_params.Wind;
+
+import java.util.List;
 
 public class WeatherData {
-    private final Config config = new Config();
+    private List<Weather> weather;
+    private Main main;
+    private Wind wind;
 
-    public String setWeatherQuery(int cityId) {
-
-        String weatherQuery = "http://api.openweathermap.org/data/2.5/weather?id="
-                + cityId
-                + "&appid="
-                + config.getWeatherApiKey()
-                + "&lang="
-                + config.getLanguage()
-                +"&units="
-                + config.getUnits();
-        System.out.println(weatherQuery);
-        return weatherQuery;
+    public List<Weather> getWeather() {
+        return weather;
     }
 
-    public void getWeatherData (int cityId) throws IOException {
-        StringBuilder result = new StringBuilder();
-        URL weatherQuery = new URL(setWeatherQuery(cityId));
-        URLConnection urlConnection = weatherQuery.openConnection();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        String str;
-        while ((str = bufferedReader.readLine()) != null) {
-            result.append(str);
-        }
-        bufferedReader.close();
-        System.out.println(result);
+    public Main getMain() {
+        return main;
     }
 
+    public Wind getWind() {
+        return wind;
+    }
+
+    public WeatherData(List<Weather> weather, Main main, Wind wind) {
+        this.weather = weather;
+        this.main = main;
+        this.wind = wind;
+    }
 }

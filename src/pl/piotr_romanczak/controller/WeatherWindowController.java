@@ -5,10 +5,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.textfield.TextFields;
-import pl.piotr_romanczak.LocationLoader;
+import pl.piotr_romanczak.model.LocationLoader;
 import pl.piotr_romanczak.Pogodynka;
 import pl.piotr_romanczak.model.LocationData;
 import pl.piotr_romanczak.model.WeatherData;
+import pl.piotr_romanczak.model.WeatherQuerry;
 import pl.piotr_romanczak.view.ViewFactory;
 
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class WeatherWindowController extends BaseController implements Initializ
 
     private List<LocationData> citiesList;
     private HashMap<String, String> cityNames;
-    public WeatherData weatherData = new WeatherData();
+    private WeatherData weatherData;
 
     public void getCityListWithCountryCodes() throws IOException {
         citiesList = new LocationLoader().getCitiesList();
@@ -96,13 +97,10 @@ public class WeatherWindowController extends BaseController implements Initializ
 
     public void getWeatherData(String cityLabel) {
         if (cityNames.containsValue(cityLabel)) {
-            try {
-                String[] cityName = cityLabel.split(",");
-                int cityId = getCityId(cityName[0]);
-                weatherData.getWeatherData(cityId);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
+            String[] cityName = cityLabel.split(",");
+            int cityId = getCityId(cityName[0]);
+            weatherData = new WeatherQuerry(cityId).getWeatherData();
+            System.out.println(weatherData.getWind().getDeg());
         }
     }
 }
