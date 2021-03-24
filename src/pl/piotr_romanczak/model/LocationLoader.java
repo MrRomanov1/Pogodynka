@@ -1,8 +1,7 @@
-package pl.piotr_romanczak;
+package pl.piotr_romanczak.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import pl.piotr_romanczak.model.LocationData;
 
 import java.io.*;
 import java.nio.file.Files;
