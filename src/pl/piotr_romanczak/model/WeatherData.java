@@ -1,31 +1,31 @@
 package pl.piotr_romanczak.model;
 
-import pl.piotr_romanczak.model.weather_params.Main;
+import pl.piotr_romanczak.model.weather_params.Current;
 import pl.piotr_romanczak.model.weather_params.Weather;
-import pl.piotr_romanczak.model.weather_params.Wind;
+import pl.piotr_romanczak.model.weather_params.Daily;
 
 import java.util.List;
 
 public class WeatherData {
     private List<Weather> weather;
-    private Main main;
-    private Wind wind;
+    private Current current;
+    private List<Daily> daily;
 
     public List<Weather> getWeather() {
         return weather;
     }
 
-    public Main getMain() {
-        return main;
+    public Current getCurrent() {
+        return current;
     }
 
-    public Wind getWind() {
-        return wind;
+    public List<Daily> getDaily() {
+        return daily;
     }
 
-    public WeatherData(List<Weather> weather, Main main, Wind wind) {
+    public WeatherData(List<Weather> weather, Current current, List<Daily> daily) {
         this.weather = weather;
-        this.main = main;
-        this.wind = wind;
+        this.current = current;
+        this.daily = daily;
     }
 }
