@@ -16,7 +16,7 @@ public class Launcher extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         ViewFactory viewFactory = new ViewFactory(pogodynka);
         viewFactory.showMainWindow();
     }

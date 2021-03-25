@@ -14,6 +14,7 @@ import pl.piotr_romanczak.view.ViewFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -78,17 +79,18 @@ public class WeatherWindowController extends BaseController implements Initializ
 
     }
 
-    private int getCityId(String cityName) {
-        int cityId = 0;
+    private List<Double> getCityParams(String cityName) {
+        List<Double> cityParams = new ArrayList<>();
 
         for (int i = 0; i < citiesList.size(); i++) {
             if (citiesList.get(i).getCityName().equals(cityName)) {
-                cityId = citiesList.get(i).getId();
-                System.out.println(cityId);
-                return cityId;
+                cityParams.add(citiesList.get(i).getCoord().getLat());
+                cityParams.add(citiesList.get(i).getCoord().getLon());
+
+                return cityParams;
             }
         }
-        return cityId;
+        return cityParams;
     }
 
     public void autocompleteTextField(TextField textField) {
@@ -98,9 +100,9 @@ public class WeatherWindowController extends BaseController implements Initializ
     public void getWeatherData(String cityLabel) {
         if (cityNames.containsValue(cityLabel)) {
             String[] cityName = cityLabel.split(",");
-            int cityId = getCityId(cityName[0]);
-            weatherData = new WeatherQuerry(cityId).getWeatherData();
-            System.out.println(weatherData.getWind().getDeg());
+            List<Double> cityParams = getCityParams(cityName[0]);
+            weatherData = new WeatherQuerry(cityParams).getWeatherData();
+            System.out.println(weatherData.getCurrent().getPressure());
         }
     }
 }

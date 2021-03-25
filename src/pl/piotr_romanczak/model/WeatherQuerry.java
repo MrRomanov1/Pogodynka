@@ -9,19 +9,23 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 
 public class WeatherQuerry {
     private final Config config = new Config();
     private WeatherData weatherData;
 
-    public WeatherQuerry(int cityId) {
-        loadWeatherDataFromJSON(cityId);
+    public WeatherQuerry(List<Double> cityParams) {
+        loadWeatherDataFromJSON(cityParams);
     }
 
-    public String setWeatherQuery(int cityId) {
+    public String setWeatherQuery(List<Double> cityParams) {
 
-        String weatherQuery = "http://api.openweathermap.org/data/2.5/weather?id="
-                + cityId
+        String weatherQuery = "http://api.openweathermap.org/data/2.5/onecall?lat="
+                + cityParams.get(0)
+                + "&lon="
+                + cityParams.get(1)
+                + "&exclude=minutely,hourly"
                 + "&appid="
                 + config.getWeatherApiKey()
                 + "&lang="
@@ -32,9 +36,9 @@ public class WeatherQuerry {
         return weatherQuery;
     }
 
-    public String getWeatherDataFromAPI(int cityId) throws IOException {
+    public String getWeatherDataFromAPI(List<Double> cityParams) throws IOException {
         StringBuilder result = new StringBuilder();
-        URL weatherQuery = new URL(setWeatherQuery(cityId));
+        URL weatherQuery = new URL(setWeatherQuery(cityParams));
         URLConnection urlConnection = weatherQuery.openConnection();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
         String str;
@@ -45,10 +49,10 @@ public class WeatherQuerry {
         return result.toString();
     }
 
-    public void loadWeatherDataFromJSON(int cityId) {
+    public void loadWeatherDataFromJSON(List<Double> cityParams) {
         String JSONWeatherData;
         try {
-            JSONWeatherData = getWeatherDataFromAPI(cityId);
+            JSONWeatherData = getWeatherDataFromAPI(cityParams);
             Gson gson = new Gson();
             weatherData = gson.fromJson(JSONWeatherData, new TypeToken<WeatherData>() {
             }.getType());
