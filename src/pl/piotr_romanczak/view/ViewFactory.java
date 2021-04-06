@@ -13,6 +13,7 @@ import java.io.IOException;
 public class ViewFactory {
 
     private Pogodynka pogodynka;
+    private static final String CSS_PATH = "css/style.css";
 
     public ViewFactory(Pogodynka pogodynka) {
         this.pogodynka = pogodynka;
@@ -36,6 +37,8 @@ public class ViewFactory {
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.setScene(scene);
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(getClass().getResource(CSS_PATH).toExternalForm());
         stage.show();
     }
 }

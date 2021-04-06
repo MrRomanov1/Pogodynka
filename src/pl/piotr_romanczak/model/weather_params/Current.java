@@ -16,6 +16,7 @@ public class Current {
     private double wind_deg;
     private List<Weather> weather;
     private Rain rain;
+    private long visibility;
 
     public long getDt() {
         return dt;
@@ -69,7 +70,7 @@ public class Current {
         return rain;
     }
 
-    public Current(long dt, long sunrise, long sunset, double temp, double feels_like, int pressure, int humidity, double dew_point, int clouds, double wind_speed, double wind_deg, List<Weather> weather, Rain rain) {
+    public Current(long dt, long sunrise, long sunset, double temp, double feels_like, int pressure, int humidity, double dew_point, int clouds, double wind_speed, double wind_deg, List<Weather> weather, Rain rain, long visibility) {
         this.dt = dt;
         this.sunrise = sunrise;
         this.sunset = sunset;
@@ -83,5 +84,10 @@ public class Current {
         this.wind_deg = wind_deg;
         this.weather = weather;
         this.rain = rain;
+        this.visibility = visibility;
+    }
+
+    public long getVisibility() {
+        return visibility;
     }
 }
