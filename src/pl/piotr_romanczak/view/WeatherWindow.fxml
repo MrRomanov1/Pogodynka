@@ -1,95 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.SVGPath?>
-<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="weatherContainer" hgap="10.0" prefHeight="501.0" prefWidth="1080.0" styleClass="container" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="weatherContainer" alignment="CENTER" hgap="10.0" prefHeight="428.0" prefWidth="1078.0" styleClass="container" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" />
       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="500.0" percentWidth="50.0" prefWidth="100.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="332.0" minHeight="10.0" prefHeight="217.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="115.0" minHeight="38.0" prefHeight="38.0" valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="212.0" minHeight="10.0" prefHeight="210.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="332.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="332.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="115.0" minHeight="9.0" prefHeight="33.0" valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="204.0" minHeight="1.0" prefHeight="31.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="194.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="237.0" prefWidth="371.0" GridPane.columnIndex="1">
-         <children>
-              <TextField fx:id="secondCityLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </TextField>
-              <Label fx:id="secondCityTemperatureLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="currentTemp" text="33">
-                  <font>
-                      <Font size="50.0" />
-                  </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-              </Label>
-              <Label fx:id="secondCityWeatherLabel" text="POGODA" />
-            <Label fx:id="secondCityUpdateTime" text="POGODA">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-      </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="227.0" prefWidth="500.0">
-         <children>
-              <TextField fx:id="firstCityLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </TextField>
-              <Label fx:id="firstCityTemperatureLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="currentTemp" text="33" textAlignment="CENTER">
-                  <font>
-                      <Font size="50.0" />
-                  </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-              </Label>
-              <Label fx:id="firstCityWeatherLabel" text="POGODA" />
-            <Label fx:id="firstCityUpdateTime" text="POGODA">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-      </VBox>
-      <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="500.0" spacing="50.0" GridPane.rowIndex="1">
-         <children>
-            <Label fx:id="firstCityFeelsLikeTemp" text="Label" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="firstCityWind" text="Label">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <graphic>
-                  <SVGPath fx:id="windDirection" content="M15,6H8V3c0-0.484-0.375-1-1-1C6.539,2,6.305,2.287,6,2.54L0.625,7C0.242,7.313,0,7.555,0,8s0.242,0.688,0.625,1L6,13.46  C6.305,13.713,6.539,14,7,14c0.625,0,1-0.516,1-1v-3h7c0.55,0,1-0.45,1-1V7C16,6.45,15.55,6,15,6z" fill="WHITE" fillRule="EVEN_ODD" nodeOrientation="LEFT_TO_RIGHT" smooth="false" strokeType="INSIDE" />
-               </graphic>
-            </Label>
-            <Label fx:id="firstCityVisibility" text="Label">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-         </children>
+      <HBox fx:id="firstCityFirstBox" alignment="TOP_CENTER" spacing="50.0" GridPane.rowIndex="2">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -97,22 +30,31 @@
             <Insets top="10.0" />
          </padding>
       </HBox>
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="199.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <HBox fx:id="secondCityFirstBox" alignment="TOP_CENTER" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <padding>
-            <Insets top="20.0" />
+            <Insets top="10.0" />
          </padding>
-         <children>
-            <Label fx:id="secondCityFeelsLikeTemp" text="Label" />
-            <Label fx:id="secondCityWind" text="Label" />
-            <Label fx:id="secondCityVisibility" text="Label" />
-         </children>
       </HBox>
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      <HBox fx:id="firstCitySecondBox" alignment="TOP_CENTER" spacing="50.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </HBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label fx:id="firstCityPressure" text="Label" />
-            <Label fx:id="firstCityHumidity" text="Label" />
-            <Label fx:id="firstCityDewPoint" text="Label" />
+              <TextField fx:id="firstCityLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
          </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+         <children>
+              <TextField fx:id="secondCityLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" />
+         </children>
+      </VBox>
+      <VBox fx:id="firstCityWeatherBox" alignment="TOP_CENTER" GridPane.rowIndex="1" />
+      <VBox fx:id="secondCityWeatherBox" alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <ScrollPane fx:id="firstDailyWeatherContainer" prefHeight="210.0" prefWidth="535.0" GridPane.rowIndex="4" />
+      <ScrollPane fx:id="secondDailyWeatherContainer" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <HBox fx:id="secondCitySecondBox" alignment="TOP_CENTER" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <padding>
             <Insets top="10.0" />
          </padding>

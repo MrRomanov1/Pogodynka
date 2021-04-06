@@ -1,4 +1,4 @@
-package pl.piotr_romanczak.model;
+package pl.piotr_romanczak;
 
 import javafx.scene.image.Image;
 
