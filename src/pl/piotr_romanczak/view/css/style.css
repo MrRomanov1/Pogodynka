@@ -1,0 +1,32 @@
+.container {
+    -fx-background-color: #2870af;
+    -fx-font-family: "Sans-serif";
+}
+
+ScrollPane {
+   -fx-background: #2870af;
+   -fx-border-color: #2870af;
+}
+
+.currentTemp {
+    -fx-font-size: 60px;
+    -fx-font-weight: 300;
+    -fx-font-family: "Sans-serif";
+
+}
+
+TextField {
+    -fx-font-weight: 300;
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 22px;
+}
+
+TextField:focused {
+    -fx-border-radius: 2px;
+    -fx-border-color: #3981bf;
+}
+
+Label {
+    -fx-text-fill: #ffffff;
+}
