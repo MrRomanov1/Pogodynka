@@ -161,4 +161,7 @@ hs_err_pid*
 #config file
 Config.java
 
+#GeoLite2-City database
+GeoLite2-City.mmdb
+
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij

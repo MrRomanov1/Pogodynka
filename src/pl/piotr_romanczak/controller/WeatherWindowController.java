@@ -1,16 +1,12 @@
 package pl.piotr_romanczak.controller;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.shape.SVGPath;
 import org.controlsfx.control.textfield.TextFields;
+import pl.piotr_romanczak.AdditionalMethods;
 import pl.piotr_romanczak.Pogodynka;
 import pl.piotr_romanczak.controller.labels.CurrentWeather;
 import pl.piotr_romanczak.controller.labels.DailyWeather;
@@ -57,6 +53,8 @@ public class WeatherWindowController extends BaseController implements Initializ
 
     private final List<LocationData> citiesList = pogodynka.getCitiesList();
     private final HashMap<String, String> cityNames = pogodynka.getCityNames();
+    private final HashMap<String, String> cityNamesWithoutPolishCharacters = AdditionalMethods.setCityNamesWithoutPolishCharacters(pogodynka.getCityNames());
+    private final String cityNameWithCountryCodeFromGeoLoc = pogodynka.getCityNameWithCountryCodeFromGeoLoc();
     public WeatherData weatherData;
 
     public WeatherWindowController(Pogodynka pogodynka, ViewFactory viewFactory, String fxmlName) {
@@ -66,16 +64,34 @@ public class WeatherWindowController extends BaseController implements Initializ
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        for (Map.Entry<String, String> entry : cityNamesWithoutPolishCharacters.entrySet()) {
+            if (entry.getValue().equals(cityNameWithCountryCodeFromGeoLoc)) {
+                firstCityLabel.setText(cityNames.get(entry.getKey()));
+            }
+        }
+        if (!firstCityLabel.getText().isEmpty()) {
+            getWeatherData(firstCityLabel.getText(), "first");
+        }
+
         autocompleteTextField(firstCityLabel);
 
-        firstCityLabel.textProperty().addListener(e -> {
-            getWeatherData(firstCityLabel.getText(), "first");
-        });
+        firstCityLabel.textProperty().
+
+                addListener(e ->
+
+                {
+                    getWeatherData(firstCityLabel.getText(), "first");
+                });
+
         autocompleteTextField(secondCityLabel);
 
-        secondCityLabel.textProperty().addListener(e -> {
-            getWeatherData(secondCityLabel.getText(), "second");
-        });
+        secondCityLabel.textProperty().
+
+                addListener(e ->
+
+                {
+                    getWeatherData(secondCityLabel.getText(), "second");
+                });
     }
 
     private List<Double> getCityParams(String cityName) {
