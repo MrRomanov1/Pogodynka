@@ -5,6 +5,7 @@ module Pogodynka {
     requires javafx.web;
     requires com.google.gson;
     requires org.controlsfx.controls;
+    requires geoip2;
 
     opens pl.piotr_romanczak;
     opens pl.piotr_romanczak.view;
