@@ -1,11 +1,13 @@
-.container {
-    -fx-background-color: #2870af;
+.grid-pane {
     -fx-font-family: "Sans-serif";
 }
 
-ScrollPane {
-   -fx-background: #2870af;
-   -fx-border-color: #2870af;
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
 }
 
 .currentTemp {
@@ -19,7 +21,7 @@ TextField {
     -fx-font-weight: 300;
     -fx-background-color: transparent;
     -fx-text-fill: #ffffff;
-    -fx-font-size: 22px;
+    -fx-font-size: 30px;
 }
 
 TextField:focused {
@@ -29,4 +31,6 @@ TextField:focused {
 
 Label {
     -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-opacity: 1;
 }

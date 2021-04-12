@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -9,55 +10,78 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="weatherContainer" alignment="CENTER" hgap="10.0" prefHeight="428.0" prefWidth="1078.0" styleClass="container" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" />
-      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="500.0" percentWidth="50.0" prefWidth="100.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="332.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="332.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="115.0" minHeight="9.0" prefHeight="33.0" valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="204.0" minHeight="1.0" prefHeight="31.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="194.0" vgrow="SOMETIMES" />
-   </rowConstraints>
-   <children>
-      <HBox fx:id="firstCityFirstBox" alignment="TOP_CENTER" spacing="50.0" GridPane.rowIndex="2">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-      </HBox>
-      <HBox fx:id="secondCityFirstBox" alignment="TOP_CENTER" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-      </HBox>
-      <HBox fx:id="firstCitySecondBox" alignment="TOP_CENTER" spacing="50.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-      </HBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+<SplitPane dividerPositions="0.5" prefHeight="430.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <items>
+      <GridPane fx:id="firstWeatherContainer" alignment="CENTER" prefHeight="420.0" prefWidth="580.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="500.0" percentWidth="100.0" prefWidth="700.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="250.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="20.0" valignment="TOP" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="260.0" minHeight="200.0" prefHeight="200.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-              <TextField fx:id="firstCityLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
+            <HBox fx:id="firstCityFirstBox" alignment="TOP_CENTER" spacing="50.0" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                    <TextField fx:id="firstCityLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" />
+               </children>
+            </VBox>
+            <VBox fx:id="firstCityWeatherBox" alignment="TOP_CENTER" GridPane.rowIndex="1" />
+            <ScrollPane fx:id="firstDailyWeatherContainer" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+               <padding>
+                  <Insets top="10.0" />
+               </padding></ScrollPane>
+            <HBox fx:id="firstCitySecondBox" alignment="TOP_CENTER" prefHeight="59.0" prefWidth="591.0" spacing="50.0" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
          </children>
-      </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+      </GridPane>
+      <GridPane fx:id="secondWeatherContainer" alignment="CENTER" prefHeight="421.0" prefWidth="554.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="500.0" percentWidth="100.0" prefWidth="700.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="250.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="20.0" valignment="TOP" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="20.0" valignment="TOP" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="260.0" minHeight="200.0" prefHeight="200.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-              <TextField fx:id="secondCityLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" />
+            <HBox fx:id="secondCityFirstBox" alignment="TOP_CENTER" spacing="50.0" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="0.0" prefWidth="549.0">
+               <children>
+                    <TextField fx:id="secondCityLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" />
+               </children>
+            </VBox>
+            <VBox fx:id="secondCityWeatherBox" alignment="TOP_CENTER" GridPane.rowIndex="1" />
+            <ScrollPane fx:id="secondDailyWeatherContainer" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+               <padding>
+                  <Insets top="10.0" />
+               </padding></ScrollPane>
+            <HBox fx:id="secondCitySecondBox" alignment="TOP_CENTER" spacing="50.0" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
          </children>
-      </VBox>
-      <VBox fx:id="firstCityWeatherBox" alignment="TOP_CENTER" GridPane.rowIndex="1" />
-      <VBox fx:id="secondCityWeatherBox" alignment="TOP_CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <ScrollPane fx:id="firstDailyWeatherContainer" prefHeight="210.0" prefWidth="535.0" GridPane.rowIndex="4" />
-      <ScrollPane fx:id="secondDailyWeatherContainer" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <HBox fx:id="secondCitySecondBox" alignment="TOP_CENTER" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-      </HBox>
-   </children>
-</GridPane>
+      </GridPane>
+   </items>
+</SplitPane>
