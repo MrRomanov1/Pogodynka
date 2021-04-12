@@ -1,4 +1,4 @@
-package pl.piotr_romanczak.controller.services;
+package pl.piotr_romanczak.model;
 
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;

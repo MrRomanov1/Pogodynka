@@ -1,7 +1,7 @@
 package pl.piotr_romanczak;
 
 import com.maxmind.geoip2.exception.GeoIp2Exception;
-import pl.piotr_romanczak.controller.services.Geolocation;
+import pl.piotr_romanczak.model.Geolocation;
 import pl.piotr_romanczak.model.LocationData;
 import pl.piotr_romanczak.model.LocationLoader;
 
