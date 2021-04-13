@@ -6,8 +6,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import org.controlsfx.control.textfield.TextFields;
 import pl.piotr_romanczak.AdditionalMethods;
 import pl.piotr_romanczak.Pogodynka;
@@ -60,7 +58,8 @@ public class WeatherWindowController extends BaseController implements Initializ
 
     private final List<LocationData> citiesList = pogodynka.getCitiesList();
     private final HashMap<String, String> cityNames = pogodynka.getCityNames();
-    private final HashMap<String, String> cityNamesWithoutPolishCharacters = AdditionalMethods.setCityNamesWithoutPolishCharacters(pogodynka.getCityNames());
+    private final HashMap<String, String> cityNamesWithoutPolishCharacters =
+            AdditionalMethods.setCityNamesWithoutPolishCharacters(pogodynka.getCityNames());
     private final String cityNameWithCountryCodeFromGeoLoc = pogodynka.getCityNameWithCountryCodeFromGeoLoc();
     public WeatherData weatherData;
 
@@ -123,25 +122,25 @@ public class WeatherWindowController extends BaseController implements Initializ
             weatherData = new WeatherQuerry(cityParams).getWeatherData();
             switch (window) {
                 case "first": {
-                    setCurrentWeatherLabels(weatherData, firstCityWeatherBox, firstCityFirstBox, firstCitySecondBox, firstWeatherContainer);
+                    setCurrentWeatherLabels(weatherData, firstCityWeatherBox, firstCityFirstBox, firstCitySecondBox,
+                            firstWeatherContainer);
                     DailyWeather.setDailyWeatherLabels(weatherData, firstDailyWeatherContainer);
                     break;
                 }
                 case "second": {
-                    setCurrentWeatherLabels(weatherData, secondCityWeatherBox, secondCityFirstBox, secondCitySecondBox, secondWeatherContainer);
+                    setCurrentWeatherLabels(weatherData, secondCityWeatherBox, secondCityFirstBox, secondCitySecondBox,
+                            secondWeatherContainer);
                     DailyWeather.setDailyWeatherLabels(weatherData, secondDailyWeatherContainer);
                     break;
                 }
                 default:
                     throw new IllegalStateException("Unexpected value: " + window);
             }
-
-        } else {
-            //code goes here
         }
     }
 
-    private void setCurrentWeatherLabels(WeatherData weatherData, VBox weatherBox, HBox firstBox, HBox secondBox, GridPane weatherContainer) {
+    private void setCurrentWeatherLabels(WeatherData weatherData, VBox weatherBox, HBox firstBox, HBox secondBox,
+                                         GridPane weatherContainer) {
 
         BackgroundSetter backgroundSetter = new BackgroundSetter(weatherData.getCurrent().getWeather().get(0).getId(),
                 weatherData.getCurrent().getDt(), weatherData.getCurrent().getSunset());

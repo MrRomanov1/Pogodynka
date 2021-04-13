@@ -32,7 +32,6 @@ public class WeatherQuerry {
                 + config.getLanguage()
                 + "&units="
                 + config.getUnits();
-        System.out.println(weatherQuery);
         return weatherQuery;
     }
 

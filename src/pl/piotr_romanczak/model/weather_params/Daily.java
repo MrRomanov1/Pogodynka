@@ -69,7 +69,9 @@ public class Daily {
         return rain;
     }
 
-    public Daily(long dt, long sunrise, long sunset, Temp temp, int pressure, int humidity, double dew_point, double wind_speed, double wind_deg, List<Weather> weather, int clouds, double pop, double rain) {
+    public Daily(long dt, long sunrise, long sunset, Temp temp, int pressure,
+                 int humidity, double dew_point, double wind_speed, double wind_deg,
+                 List<Weather> weather, int clouds, double pop, double rain) {
         this.dt = dt;
         this.sunrise = sunrise;
         this.sunset = sunset;
@@ -84,6 +86,4 @@ public class Daily {
         this.pop = pop;
         this.rain = rain;
     }
-
-
 }
