@@ -1,6 +1,5 @@
 package pl.piotr_romanczak.controller.labels;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -26,12 +25,16 @@ public class DailyWeather {
             weatherHBox.getChildren().add(dailyWeatherBoxes[i]);
             dailyWeatherBoxes[i].setAlignment(Pos.CENTER);
             dailyWeatherBoxes[i].setMinWidth(200);
-            dailyWeatherBoxes[i].setStyle("-fx-background-color: rgba(40, 112, 175, 0.2); -fx-border-radius: 20, 20, 20, 20; -fx-background-radius: 20 20 20 20;");
-            dailyWeatherBoxes[i].getChildren().add(new Label(DateConverter.getDayName(weatherData.getDaily().get(i).getDt())));
+            dailyWeatherBoxes[i].setStyle("-fx-background-color: rgba(40, 112, 175, 0.2); " +
+                    "-fx-border-radius: 20, 20, 20, 20; -fx-background-radius: 20 20 20 20;");
+            dailyWeatherBoxes[i].getChildren().add(new Label(DateConverter.getDayName(weatherData.
+                    getDaily().get(i).getDt())));
             IconResolver iconResolver = new IconResolver(weatherData.getDaily().get(i).getWeather().get(0).getIcon());
             dailyWeatherBoxes[i].getChildren().add(new ImageView(iconResolver.getImage()));
-            dailyWeatherBoxes[i].getChildren().add(new Label(String.format("%3.1f", weatherData.getDaily().get(i).getTemp().getMax()) + "°C"));
-            dailyWeatherBoxes[i].getChildren().add(new Label(weatherData.getDaily().get(i).getWeather().get(0).getDescription()));
+            dailyWeatherBoxes[i].getChildren().add(new Label(String.format("%3.1f", weatherData.getDaily().
+                    get(i).getTemp().getMax()) + "°C"));
+            dailyWeatherBoxes[i].getChildren().add(new Label(weatherData.getDaily().get(i).getWeather().
+                    get(0).getDescription()));
         }
     }
 }

@@ -24,10 +24,18 @@ public class BackgroundSetter {
             imageResource = "file:src\\pl\\piotr_romanczak\\resources\\img\\clouds-few-day.jpg";
         } else if (weatherCode == 801 && sunsetTime < currentTime) {
             imageResource = "file:src\\pl\\piotr_romanczak\\resources\\img\\clouds-few-night.jpg";
-        } else if (weatherCode > 801 && sunsetTime > currentTime) {
+        } else if (weatherCode == 802 && sunsetTime > currentTime) {
             imageResource = "file:src\\pl\\piotr_romanczak\\resources\\img\\scattered-clouds-day.jpg";
-        } else if (weatherCode > 801 && sunsetTime < currentTime) {
+        } else if (weatherCode == 802 && sunsetTime < currentTime) {
             imageResource = "file:src\\pl\\piotr_romanczak\\resources\\img\\scattered-clouds-night.jpg";
+        } else if (weatherCode == 803 && sunsetTime > currentTime) {
+            imageResource = "file:src\\pl\\piotr_romanczak\\resources\\img\\broken-clouds-day.jpg";
+        } else if (weatherCode == 803 && sunsetTime < currentTime) {
+            imageResource = "file:src\\pl\\piotr_romanczak\\resources\\img\\broken-clouds-night.jpg";
+        } else if (weatherCode == 804 && sunsetTime > currentTime) {
+            imageResource = "file:src\\pl\\piotr_romanczak\\resources\\img\\overcast-clouds-day.png";
+        } else if (weatherCode == 804 && sunsetTime < currentTime) {
+            imageResource = "file:src\\pl\\piotr_romanczak\\resources\\img\\overcast-clouds-night.png";
         } else {
             imageResource = "file:src\\pl\\piotr_romanczak\\resources\\img\\mist.jpg";
         }
