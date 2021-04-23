@@ -8,7 +8,7 @@ public class Launcher extends Application {
 
     private Pogodynka pogodynka = new Pogodynka();
 
-    public static void main(String[] args) {
+    public static void runApp(String[] args) {
         launch(args);
     }
 

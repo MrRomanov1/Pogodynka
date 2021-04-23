@@ -22,7 +22,7 @@ public class Geolocation {
 
     public void setCityWithCountryCodeFromGeoLoc() throws IOException, GeoIp2Exception {
 
-        File database = new File("src\\pl\\piotr_romanczak\\resources\\GeoLite2-City.mmdb");
+        File database = new File("src\\main\\resources\\GeoLite2-City.mmdb");
         DatabaseReader reader = new DatabaseReader.Builder(database).build();
         InetAddress ipAddress = InetAddress.getByName(getMyIpAddress());
 
