@@ -11,7 +11,7 @@ import java.util.List;
 public class LocationLoader {
 
     private List<LocationData> locationList;
-    public static final String RESOURCE_NAME = "src\\pl\\piotr_romanczak\\resources\\city.list.json";
+    public static final String RESOURCE_NAME = "src/main/resources/json/city.list.json";
 
     public LocationLoader() throws IOException {
         loadLocationListFromJSON();

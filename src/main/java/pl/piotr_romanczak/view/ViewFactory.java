@@ -13,14 +13,14 @@ import java.io.IOException;
 public class ViewFactory {
 
     private Pogodynka pogodynka;
-    private static final String CSS_PATH = "css/style.css";
+    private static final String CSS_PATH = "/view/css/style.css";
 
     public ViewFactory(Pogodynka pogodynka) {
         this.pogodynka = pogodynka;
     }
 
     public void showMainWindow() {
-        BaseController controller = new WeatherWindowController(pogodynka, this, "WeatherWindow.fxml");
+        BaseController controller = new WeatherWindowController(pogodynka, this, "/view/WeatherWindow.fxml");
         initializeStage(controller);
     }
 
