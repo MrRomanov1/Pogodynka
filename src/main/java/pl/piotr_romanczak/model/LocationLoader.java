@@ -4,14 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class LocationLoader {
 
     private List<LocationData> locationList;
-    public static final String RESOURCE_NAME = "src/main/resources/json/city.list.json";
+    public static final String RESOURCE_PATH = "/json/city.list.min.json";
 
     public LocationLoader() throws IOException {
         loadLocationListFromJSON();
@@ -22,11 +21,12 @@ public class LocationLoader {
     }
 
     private void loadLocationListFromJSON() {
-
         try {
+            InputStream resourceAsStream = getClass().getResourceAsStream(RESOURCE_PATH);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8));
             Gson gson = new Gson();
-            Reader reader = Files.newBufferedReader(Path.of(RESOURCE_NAME));
-            locationList = gson.fromJson(reader, new TypeToken<List<LocationData>>() {}.getType());
+            locationList = gson.fromJson(reader, new TypeToken<List<LocationData>>() {
+            }.getType());
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();

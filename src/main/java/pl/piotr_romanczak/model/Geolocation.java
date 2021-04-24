@@ -5,16 +5,12 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.record.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.io.*;
+import java.net.*;
 
 public class Geolocation {
     private String cityNameWithCountryCodeFromGeoLoc;
+    private static final String RESOURCE_PATH = "/cities/GeoLite2-City.mmdb";
 
     public Geolocation() throws IOException, GeoIp2Exception {
         setCityWithCountryCodeFromGeoLoc();
@@ -22,8 +18,9 @@ public class Geolocation {
 
     public void setCityWithCountryCodeFromGeoLoc() throws IOException, GeoIp2Exception {
 
-        File database = new File("src\\main\\resources\\GeoLite2-City.mmdb");
-        DatabaseReader reader = new DatabaseReader.Builder(database).build();
+        InputStream resourceAsStream = getClass().getResourceAsStream(RESOURCE_PATH);
+        File file = streamToFile(resourceAsStream);
+        DatabaseReader reader = new DatabaseReader.Builder(file).build();
         InetAddress ipAddress = InetAddress.getByName(getMyIpAddress());
 
         CityResponse response = reader.city(ipAddress);
@@ -48,6 +45,15 @@ public class Geolocation {
             e.printStackTrace();
         }
         return address;
+    }
+
+    public static File streamToFile(InputStream in) throws IOException {
+        final File tempFile = File.createTempFile("GeoLite2-City-temp", ".mmdb");
+        tempFile.deleteOnExit();
+        try (FileOutputStream out = new FileOutputStream(tempFile)) {
+            in.transferTo(out);
+        }
+        return tempFile;
     }
 }
 
