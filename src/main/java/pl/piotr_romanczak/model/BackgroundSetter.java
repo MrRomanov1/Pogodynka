@@ -1,5 +1,7 @@
 package pl.piotr_romanczak.model;
 
+import java.io.InputStream;
+
 public class BackgroundSetter {
     private String imageResource;
 
@@ -9,39 +11,39 @@ public class BackgroundSetter {
 
     public void setAppBackground(int weatherCode, long currentTime, long sunsetTime) {
         if (weatherCode >= 200 && weatherCode < 300) {
-            imageResource = "file:src/main/resources/img/thunderstorm.jpg";
+            imageResource = "/img/thunderstorm.jpg";
         } else if (weatherCode >= 300 && weatherCode < 600) {
-            imageResource = "file:src/main/resources/img/rain.jpg";
+            imageResource = "/img/rain.jpg";
         } else if (weatherCode >= 600 && weatherCode < 700) {
-            imageResource = "file:src/main/resources/img/snow.jpg";
+            imageResource = "/img/snow.jpg";
         } else if (weatherCode >= 700 && weatherCode < 800) {
-            imageResource = "file:src/main/resources/img/mist.jpg";
+            imageResource = "/img/mist.jpg";
         } else if (weatherCode == 800 && sunsetTime > currentTime) {
-            imageResource = "file:src/main/resources/img/clear-sky-day.jpg";
+            imageResource = "/img/clear-sky-day.jpg";
         } else if (weatherCode == 800 && sunsetTime < currentTime) {
-            imageResource = "file:src/main/resources/img/clear-sky-night.jpg";
+            imageResource = "/img/clear-sky-night.jpg";
         } else if (weatherCode == 801 && sunsetTime > currentTime) {
-            imageResource = "file:src/main/resources/img/clouds-few-day.jpg";
+            imageResource = "/img/clouds-few-day.jpg";
         } else if (weatherCode == 801 && sunsetTime < currentTime) {
-            imageResource = "file:src/main/resources/img/clouds-few-night.jpg";
+            imageResource = "/img/clouds-few-night.jpg";
         } else if (weatherCode == 802 && sunsetTime > currentTime) {
-            imageResource = "file:src/main/resources/img/scattered-clouds-day.jpg";
+            imageResource = "/img/scattered-clouds-day.jpg";
         } else if (weatherCode == 802 && sunsetTime < currentTime) {
-            imageResource = "file:src/main/resources/img/scattered-clouds-night.jpg";
+            imageResource = "/img/scattered-clouds-night.jpg";
         } else if (weatherCode == 803 && sunsetTime > currentTime) {
-            imageResource = "file:src/main/resources/img/broken-clouds-day.jpg";
+            imageResource = "/img/broken-clouds-day.jpg";
         } else if (weatherCode == 803 && sunsetTime < currentTime) {
-            imageResource = "file:src/main/resources/img/broken-clouds-night.jpg";
+            imageResource = "/img/broken-clouds-night.jpg";
         } else if (weatherCode == 804 && sunsetTime > currentTime) {
-            imageResource = "file:src/main/resources/img/overcast-clouds-day.png";
+            imageResource = "/img/overcast-clouds-day.png";
         } else if (weatherCode == 804 && sunsetTime < currentTime) {
-            imageResource = "file:src/main/resources/img/overcast-clouds-night.png";
+            imageResource = "/img/overcast-clouds-night.png";
         } else {
-            imageResource = "file:src/main/resources/img/mist.jpg";
+            imageResource = "/img/mist.jpg";
         }
     }
 
-    public String getImageResource() {
-        return imageResource;
+    public InputStream getImageResource() {
+        return getClass().getResourceAsStream(imageResource);
     }
 }

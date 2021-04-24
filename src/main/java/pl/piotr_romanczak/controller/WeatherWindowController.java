@@ -119,7 +119,7 @@ public class WeatherWindowController extends BaseController implements Initializ
         if (cityNames.containsValue(cityLabel)) {
             String[] cityName = cityLabel.split(",");
             List<Double> cityParams = getCityParams(cityName[0]);
-            weatherData = new WeatherQuerry(cityParams).getWeatherData();
+            weatherData = new WeatherQuery(cityParams).getWeatherData();
             switch (window) {
                 case "first": {
                     setCurrentWeatherLabels(weatherData, firstCityWeatherBox, firstCityFirstBox, firstCitySecondBox,
