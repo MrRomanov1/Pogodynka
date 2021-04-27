@@ -8,6 +8,15 @@ public class Temp {
     private double eve;
     private double morn;
 
+    public Temp(double day, double min, double max, double night, double eve, double morn) {
+        this.day = day;
+        this.min = min;
+        this.max = max;
+        this.night = night;
+        this.eve = eve;
+        this.morn = morn;
+    }
+
     public double getDay() {
         return day;
     }
@@ -30,14 +39,5 @@ public class Temp {
 
     public double getMorn() {
         return morn;
-    }
-
-    public Temp(double day, double min, double max, double night, double eve, double morn) {
-        this.day = day;
-        this.min = min;
-        this.max = max;
-        this.night = night;
-        this.eve = eve;
-        this.morn = morn;
     }
 }

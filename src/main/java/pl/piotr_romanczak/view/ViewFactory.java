@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class ViewFactory {
 
-    private Pogodynka pogodynka;
+    public Pogodynka pogodynka;
     private static final String CSS_PATH = "/view/css/style.css";
 
     public ViewFactory(Pogodynka pogodynka) {
@@ -20,7 +20,7 @@ public class ViewFactory {
     }
 
     public void showMainWindow() {
-        BaseController controller = new WeatherWindowController(pogodynka, this, "/view/WeatherWindow.fxml");
+        BaseController controller = new WeatherWindowController(this, "/view/WeatherWindow.fxml");
         initializeStage(controller);
     }
 
