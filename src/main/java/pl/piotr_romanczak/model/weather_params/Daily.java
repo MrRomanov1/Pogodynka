@@ -17,6 +17,24 @@ public class Daily {
     private double pop;
     private double rain;
 
+    public Daily(long dt, long sunrise, long sunset, Temp temp, int pressure,
+                 int humidity, double dew_point, double wind_speed, double wind_deg,
+                 List<Weather> weather, int clouds, double pop, double rain) {
+        this.dt = dt;
+        this.sunrise = sunrise;
+        this.sunset = sunset;
+        this.temp = temp;
+        this.pressure = pressure;
+        this.humidity = humidity;
+        this.dew_point = dew_point;
+        this.wind_speed = wind_speed;
+        this.wind_deg = wind_deg;
+        this.weather = weather;
+        this.clouds = clouds;
+        this.pop = pop;
+        this.rain = rain;
+    }
+
     public long getDt() {
         return dt;
     }
@@ -67,23 +85,5 @@ public class Daily {
 
     public double getRain() {
         return rain;
-    }
-
-    public Daily(long dt, long sunrise, long sunset, Temp temp, int pressure,
-                 int humidity, double dew_point, double wind_speed, double wind_deg,
-                 List<Weather> weather, int clouds, double pop, double rain) {
-        this.dt = dt;
-        this.sunrise = sunrise;
-        this.sunset = sunset;
-        this.temp = temp;
-        this.pressure = pressure;
-        this.humidity = humidity;
-        this.dew_point = dew_point;
-        this.wind_speed = wind_speed;
-        this.wind_deg = wind_deg;
-        this.weather = weather;
-        this.clouds = clouds;
-        this.pop = pop;
-        this.rain = rain;
     }
 }

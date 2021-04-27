@@ -3,6 +3,8 @@ package pl.piotr_romanczak.model;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import pl.piotr_romanczak.Config;
+import pl.piotr_romanczak.controller.ErrorMessages;
+import pl.piotr_romanczak.controller.Statements;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -57,6 +59,7 @@ public class WeatherQuery {
             weatherData = gson.fromJson(JSONWeatherData, new TypeToken<WeatherData>() {
             }.getType());
         } catch (IOException e) {
+            ErrorMessages.setErrorMessage(Statements.CANNOT_LOAD_WEATHER_DATA);
             e.printStackTrace();
         }
     }

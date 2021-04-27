@@ -2,13 +2,14 @@ package pl.piotr_romanczak.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import org.controlsfx.control.textfield.TextFields;
-import pl.piotr_romanczak.AdditionalMethods;
 import pl.piotr_romanczak.Pogodynka;
+import pl.piotr_romanczak.StringUtils;
 import pl.piotr_romanczak.controller.labels.CurrentWeather;
 import pl.piotr_romanczak.controller.labels.DailyWeather;
 import pl.piotr_romanczak.model.*;
@@ -55,34 +56,34 @@ public class WeatherWindowController extends BaseController implements Initializ
     @FXML
     private HBox secondCitySecondBox;
 
+    private final List<LocationData> citiesList;
+    private final Map<String, String> cityNames;
+    private final Map<String, String> cityNamesWithoutPolishCharacters;
+    private final String cityNameWithCountryCodeFromGeoLoc;
+    private Pogodynka pogodynka;
+    private WeatherData weatherData;
 
-    private final List<LocationData> citiesList = pogodynka.getCitiesList();
-    private final HashMap<String, String> cityNames = pogodynka.getCityNames();
-    private final HashMap<String, String> cityNamesWithoutPolishCharacters =
-            AdditionalMethods.setCityNamesWithoutPolishCharacters(pogodynka.getCityNames());
-    private final String cityNameWithCountryCodeFromGeoLoc = pogodynka.getCityNameWithCountryCodeFromGeoLoc();
-    public WeatherData weatherData;
+    public WeatherWindowController(ViewFactory viewFactory, String fxmlName) {
+        super(viewFactory, fxmlName);
+        pogodynka = new Pogodynka();
+        citiesList = pogodynka.getCitiesList();
+        cityNames = pogodynka.getCityNames();
+        cityNamesWithoutPolishCharacters = StringUtils.setCityNamesWithoutPolishCharacters(pogodynka.getCityNames());
+        cityNameWithCountryCodeFromGeoLoc = pogodynka.getCityNameWithCountryCodeFromGeoLoc();
 
-    public WeatherWindowController(Pogodynka pogodynka, ViewFactory viewFactory, String fxmlName) {
-        super(pogodynka, viewFactory, fxmlName);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if (!geolocationEqualsWeatherData()) {
+        if (!geolocationCityNameEqualsWeatherDataCityName()) {
             firstCityLabel.setText("Warszawa, PL");
-            getWeatherData(firstCityLabel.getText(), "first");
-        } else if (!firstCityLabel.getText().isEmpty()) {
-            getWeatherData(firstCityLabel.getText(), "first");
         }
+        getWeatherData(firstCityLabel.getText(), "first");
         autocompleteTextField(firstCityLabel);
 
         firstCityLabel.textProperty().
-                addListener(e ->
-                {
-                    getWeatherData(firstCityLabel.getText(), "first");
-                });
+                addListener(e -> getWeatherData(firstCityLabel.getText(), "first"));
         secondCityLabel.setText("Warszawa, PL");
         if (!secondCityLabel.getText().isEmpty()) {
             getWeatherData(secondCityLabel.getText(), "second");
@@ -91,22 +92,20 @@ public class WeatherWindowController extends BaseController implements Initializ
         autocompleteTextField(secondCityLabel);
 
         secondCityLabel.textProperty().
-                addListener(e ->
-                {
-                    getWeatherData(secondCityLabel.getText(), "second");
-                });
+                addListener(e -> getWeatherData(secondCityLabel.getText(), "second"));
     }
 
     private List<Double> getCityParams(String cityName) {
         List<Double> cityParams = new ArrayList<>();
 
-        for (int i = 0; i < citiesList.size(); i++) {
-            if (citiesList.get(i).getCityName().equals(cityName)) {
-                cityParams.add(citiesList.get(i).getCoord().getLat());
-                cityParams.add(citiesList.get(i).getCoord().getLon());
-
-                return cityParams;
+        for (LocationData locationData : citiesList) {
+            if (locationData.getCityName().equals(cityName)) {
+                cityParams.add(locationData.getCoord().getLat());
+                cityParams.add(locationData.getCoord().getLon());
             }
+        }
+        if (cityParams.isEmpty()) {
+            ErrorMessages.setErrorMessage(Statements.CITY_NOT_FOUND + cityName);
         }
         return cityParams;
     }
@@ -146,7 +145,7 @@ public class WeatherWindowController extends BaseController implements Initializ
                 weatherData.getCurrent().getDt(), weatherData.getCurrent().getSunset());
         BackgroundImage backgroundImage = new BackgroundImage(new Image(backgroundSetter.getImageResource()),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO,true, true, true, true));
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, true, true));
         weatherContainer.setBackground(new Background(backgroundImage));
         weatherBox.getChildren().removeAll(weatherBox.getChildren());
         firstBox.getChildren().clear();
@@ -154,9 +153,12 @@ public class WeatherWindowController extends BaseController implements Initializ
         CurrentWeather.setCurrentWeatherLabels(weatherBox, weatherData);
         CurrentWeather.setCurrentWeatherFirstBox(firstBox, weatherData);
         CurrentWeather.setCurrentWeatherSecondBox(secondBox, weatherData);
+        if (ErrorMessages.getErrorMessage() != null) {
+            firstBox.getChildren().add(new Label(ErrorMessages.getErrorMessage()));
+        }
     }
 
-    public boolean geolocationEqualsWeatherData() {
+    private boolean geolocationCityNameEqualsWeatherDataCityName() {
         for (Map.Entry<String, String> entry : cityNamesWithoutPolishCharacters.entrySet()) {
             if (entry.getValue().equals(cityNameWithCountryCodeFromGeoLoc)) {
                 firstCityLabel.setText(cityNames.get(entry.getKey()));

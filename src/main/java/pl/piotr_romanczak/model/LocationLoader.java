@@ -2,6 +2,8 @@ package pl.piotr_romanczak.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import pl.piotr_romanczak.controller.ErrorMessages;
+import pl.piotr_romanczak.controller.Statements;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -29,6 +31,7 @@ public class LocationLoader {
             }.getType());
             reader.close();
         } catch (IOException e) {
+            ErrorMessages.setErrorMessage(Statements.CANNOT_GET_CITY_DB);
             e.printStackTrace();
         }
     }
